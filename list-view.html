@@ -18,9 +18,9 @@ limitations under the License.
 <link rel="import" href="action-emitter.html">
 
 
-<script type="text/javascript" type="text/ecmascript-6">
+<script type="text/javascript">
 
-  var UniFlow = window.UniFlow || {};
+  window.UniFlow = window.UniFlow || {};
 
 /**
 
@@ -73,7 +73,7 @@ limitations under the License.
 
  @polymerBehavior UniFlow.ListView
 */
-  UniFlow.ListViewImpl = {
+  window.UniFlow.ListViewImpl = {
     properties: {
 
       /**
@@ -160,8 +160,8 @@ limitations under the License.
   };
 
   /** @polymerBehavior */
-  UniFlow.ListView = [
-    UniFlow.ActionEmitter,
-    UniFlow.ListViewImpl
+  window.UniFlow.ListView = [
+    window.UniFlow.ActionEmitter,
+    window.UniFlow.ListViewImpl
   ];
 </script>

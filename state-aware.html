@@ -17,16 +17,16 @@ limitations under the License.
 <link rel="import" href="../polymer/polymer.html">
 
 
-<script type="text/javascript" type="text/ecmascript-6">
+<script type="text/javascript">
 
-  var UniFlow = window.UniFlow || {};
+  window.UniFlow = window.UniFlow || {};
 
 /**
  Key behavior that must be assigned to all elements that need to access
  application state and/or have access to the application element. The element is
  notified of any changes to application's state, as well as all its properties
  when they're modified by state mutator elements. `state-path` property must
- be used to identify path to element's state in application state tree. 
+ be used to identify path to element's state in application state tree.
 
  ### Example:
 
@@ -65,7 +65,7 @@ limitations under the License.
  @polymerBehavior
 */
 
-  UniFlow.StateAware = {
+  window.UniFlow.StateAware = {
 
     properties: {
 

@@ -19,7 +19,7 @@ limitations under the License.
 
 <script>
 
-  var UniFlow = window.UniFlow || {};
+  window.UniFlow = window.UniFlow || {};
 
 /**
 
@@ -31,7 +31,7 @@ limitations under the License.
  @polymerBehavior UniFlow.StateMutator
 */
 
-  UniFlow.StateMutatorImpl = {
+  window.UniFlow.StateMutatorImpl = {
 
     properties: {
       /**
@@ -47,9 +47,9 @@ limitations under the License.
   };
 
   /** @polymerBehavior */
-  UniFlow.StateMutator = [
-    UniFlow.StateAware,
-    UniFlow.StateMutatorImpl
+  window.UniFlow.StateMutator = [
+    window.UniFlow.StateAware,
+    window.UniFlow.StateMutatorImpl
   ];
 
 </script>

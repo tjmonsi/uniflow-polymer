@@ -129,28 +129,30 @@ limitations under the License.
      * @private
      */
     notifyStateAwareElements_(change) {
-      this.get('application.stateAwareElements').forEach(element => {
-        element.notifyPath(change.path, change.value, true);
-        if (element.statePath && change.path.startsWith(element.statePath)) {
-          let pathToNotify = change.path.slice(element.statePath.length + 1);
-          if (pathToNotify) {
-            if (element.get(pathToNotify) !== change.value &&
-              !change.path.endsWith('.splices')) {
-              element.set(pathToNotify, change.value);
+      if (this.get('application.stateAwareElements')) {
+        this.get('application.stateAwareElements').forEach(element => {
+          element.notifyPath(change.path, change.value, true);
+          if (element.statePath && change.path.startsWith(element.statePath)) {
+            let pathToNotify = change.path.slice(element.statePath.length + 1);
+            if (pathToNotify) {
+              if (element.get(pathToNotify) !== change.value &&
+                !change.path.endsWith('.splices')) {
+                element.set(pathToNotify, change.value);
+              } else {
+                element.notifyPath(pathToNotify, change.value, true);
+              }
             } else {
-              element.notifyPath(pathToNotify, change.value, true);
+              // If pathToNotify empty, that means the whole element state need
+              // to be replaced. Iterating through the keys of new value (which
+              // has to be an object) and setting element properties with the same
+              // name.
+              Object.keys(change.value).forEach((key) => {
+                element.set(key, change.value[key]);
+            });
             }
-          } else {
-            // If pathToNotify empty, that means the whole element state need
-            // to be replaced. Iterating through the keys of new value (which
-            // has to be an object) and setting element properties with the same
-            // name.
-            Object.keys(change.value).forEach((key) => {
-              element.set(key, change.value[key]);
-          });
           }
-        }
-      });
+        });
+      }
     },
 
     /**
